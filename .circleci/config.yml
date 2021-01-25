@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run:
           name: initial run
-          command: python ./app/my_example.py
+          command: echo "Hello"
 workflows:
   # Name the workflow "welcome"
   welcome:
