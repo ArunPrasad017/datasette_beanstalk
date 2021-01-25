@@ -6,7 +6,8 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
 jobs:
-  datasette:
+  deploy:
+    working_directory: ~/app
     docker:
       - image: arundocker017/datasette_beanstalk
     steps:
@@ -14,9 +15,25 @@ jobs:
       - run:
           name: initial run
           command: echo "Hello"
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python3-pip python3-dev build-essential
+            sudo pip3 install awsebcli
+      - run:
+          name: Deploying
+          command: eb deploy datasette-application-docker
+      
 workflows:
+  version: 2
   # Name the workflow "welcome"
-  welcome:
+  build:
     # Run the welcome/run job in its own container
     jobs:
-      - datasette
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
