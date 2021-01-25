@@ -9,19 +9,12 @@ jobs:
   deploy:
     working_directory: ~/app
     docker:
-      - image: arundocker017/datasette_beanstalk
+      - image: arundocker017/datasette_beanstalk:latest
     steps:
       - checkout
       - run:
           name: initial run
           command: echo "Hello"
-      - run:
-          name: Installing deployment dependencies
-          working_directory: /
-          command: |
-            sudo apt-get -y -qq update
-            sudo apt-get install python3-pip python3-dev build-essential
-            sudo pip3 install awsebcli
       - run:
           name: Deploying
           command: eb deploy datasette-application-docker
@@ -32,8 +25,4 @@ workflows:
   build:
     # Run the welcome/run job in its own container
     jobs:
-      - deploy:
-          filters:
-            branches:
-              only:
-                - master
+      - deploy
