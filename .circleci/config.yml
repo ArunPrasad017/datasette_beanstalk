@@ -5,9 +5,18 @@ orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
+jobs:
+  datasette:
+    docker:
+      - image: arundocker017/datasette_beanstalk
+    steps:
+      - checkout
+      - run:
+          name: initial run
+          command: sh run.sh
 workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
+      - datasette
