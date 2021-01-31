@@ -6,8 +6,7 @@ COPY /datasette/ /app/
 
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r /tmp/requirements/base.txt
+EXPOSE 8001
 
 RUN chmod +x /app/docker-entrypoint.sh
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
-
-EXPOSE 8001
