@@ -8,4 +8,4 @@ echo $GREETINGS
 python /app/my_example.py
 
 ##step2
-datasette -p 80 -h 0.0.0.0 meteorites.db
+datasette -p 80 -h 0.0.0.0 app/meteorites.db
