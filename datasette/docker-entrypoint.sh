@@ -5,6 +5,7 @@ GREETINGS="Hello! How are you"
 echo $GREETINGS
 
 ## step1
+cd /app/
 python /app/my_example.py
 
 ##step2
