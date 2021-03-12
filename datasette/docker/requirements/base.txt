@@ -2,4 +2,3 @@ requests
 sqlite-utils
 datasette
 awsebcli
-awscli
