@@ -15,9 +15,9 @@ jobs:
       - run:
           name: initial run
           command: echo "Hello"
-      - run:
-          name: Deploying
-          command: eb deploy DatasetteApplicationDocker-env
+      # - run:
+      #     name: Deploying
+      #     command: eb deploy DatasetteApplicationDocker-env
       
 workflows:
   version: 2
